@@ -1,0 +1,76 @@
+<div class="container">
+	
+<h1 class="text-center"
+				style="
+    background: linear-gradient(to right, #36ecde, #000);
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;">List des Commandes </h1>
+	<div class="card">
+		<div class="card-title"> Ajouter Commande</div>
+		 <div class="card-body">
+                      <form #form="ngForm" (ngSubmit)="addCommandes(form)">
+						  <div class="row">
+								  <div class="col-6">
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname"> Client</label>
+                          <select  [(ngModel)]="commande.client.id" name="client"  class="form-control" id="basic-default-fullname" >
+					 <option *ngFor="let clt of clientList" value="{{clt.id}}">
+						 {{clt.nom +''+ clt.prenom}}
+					 </option>
+ 					 </select>
+                        </div>
+                        
+						  </div> 
+					  
+						  </div>
+					      <div class="modal-footer">
+         <button type="submit" class="btn btn-primary">Ajouter Commandes</button>
+      </div>
+					
+                        
+                      </form>
+                    </div>
+   
+                <div class="table-responsive text-nowrap">
+                  <table class="table p-3">
+                    <thead>
+                      <tr class="text-center">
+                        <th>code de Commandes</th>     
+                         <th>Date de Commande</th>
+                         <th>Etat</th>
+                          <th>Client</th>  
+                          <th>Prix Total</th>
+                        <th>Actions</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <tr *ngFor="let cmd of commandeList"  class="text-center">
+                        <td>{{cmd.id}}</td>
+                        <td>{{cmd.orderDate}}</td> 
+                        <td><p *ngIf="cmd.valide == true" style="color:blue"> Commande Valider </p> 
+                        <p *ngIf="cmd.enattente == true" style="color:rgb(0, 0, 0)"> Commande En attente </p></td>
+                        <td>{{cmd.client.nom}}</td>
+                          <td>{{cmd.totalprix}}</td>
+                        <td>					                          
+                
+							 <button class="btn btn-basic" (click)="delete(cmd.id)">
+						  <img src="../../../assets/icons/delete.png" class="text-end" width="30" height="30">
+					  </button>
+		 <button class="btn btn-basic" (click)="getInfo(cmd.id)">
+						  <img src="../../../assets/icons/info.png"  class="text-end" width="30" height="30">
+					  </button>  
+                        </td>
+                        <td>
+							                          
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+</div>
+ 
+      

@@ -1,0 +1,65 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3"  >Gestion de ventes</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+<a   class="nav-link px-3"  *ngIf="loginOrNot()" (click)="logout()" >Se deconnecter</a>
+<a   class="nav-link px-3"  *ngIf="!loginOrNot()" >Se Connecter</a>
+
+    </div>
+  </div>
+</header>
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"  *ngIf="loginOrNot()">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+      <a routerLink="/index"  class="nav-link active" aria-current="page"  >
+              <span data-feather="home"></span>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+      <a routerLink="/category"  class="nav-link"  >
+              <span data-feather="file"></span>
+              Categories
+            </a>
+          </li>
+          <li class="nav-item">
+      <a routerLink="/produit"  class="nav-link"  >
+              <span data-feather="shopping-cart"></span>
+              Articles
+            </a>
+          </li>
+          <li class="nav-item">
+      <a routerLink="/client"  class="nav-link"  >
+              <span data-feather="users"></span>
+              Clients
+            </a>
+          </li>
+          <li class="nav-item">
+      <a routerLink="/commandes"  class="nav-link"  >
+              <span data-feather="bar-chart-2"></span>
+              Commandes
+            </a>
+          </li>
+             <li class="nav-item">
+      <a routerLink="/devis"  class="nav-link"  >
+              <span data-feather="bar-chart-2"></span>
+              Devis
+            </a>
+          </li>
+        </ul>
+
+        
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

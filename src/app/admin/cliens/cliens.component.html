@@ -1,0 +1,156 @@
+<div class="container">
+<h1 class="text-center"
+				style="
+    background: linear-gradient(to right, #36ecde, #000);
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;">List des Clients </h1>
+	<div class="card">
+                <div class="table-responsive text-nowrap">
+                  <table class="table p-3">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Nom de Client</th>     
+                         <th>prenom de Client</th>
+                           <th>Adresse de Client</th>
+                          <th>Numero Telephone </th>
+                           <th>Email  Client</th>
+                        <th>Actions</th>
+                        <th>
+							<button type="button" class="btn btn-basic" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+							<img src="../../../assets/icons/add.png" class="text-end" width="30" height="30">
+</button>
+						</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <tr *ngFor="let clt of clientList"  class="text-center">
+                        <td>{{clt.nom}}</td>
+                        <td>{{clt.prenom}}</td>
+                        <td>{{clt.adresse}}</td>
+                         <td>{{clt.numTel}}</td>
+                          <td>{{clt.email}}</td>
+                        <td>					                          
+                      <button type="button" class="btn btn-basic" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" (click)="findById(clt.id)" >
+						  <img src="../../../assets/icons/update.png"  class="text-end" width="30" height="30">
+					  </button>
+							 <button class="btn btn-basic" (click)="deleteArticle(clt.id)">
+						  <img src="../../../assets/icons/delete.png" class="text-end" width="30" height="30">
+					  </button>                          
+                        </td>
+                        <td>
+							                          
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajouter title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <div class="card-body">
+                      <form #form="ngForm" (ngSubmit)="ajouterClient(form)">
+						  <div class="row">
+								  <div class="col-6">
+							  <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Nom Client</label>
+                          <input type="text"    [(ngModel)]="client.nom" name="nom" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Prenom Client</label>
+                          <input type="text"   [(ngModel)]="client.prenom" name="prenom" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Adresse Client</label>
+                          <input type="text"   [(ngModel)]="client.adresse" name="adresse" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+						  </div> 
+						  	  <div class="col-6">
+							
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Numero  Tel Client</label>
+                          <input type="number"   [(ngModel)]="client.numTel" name="numTel" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
+                           
+                        </div>
+                         <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Email  Client</label>
+                          <input  type="text"  [(ngModel)]="client.email" name="email" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
+                          
+                        </div>
+						  </div> 
+						  </div>
+					      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Ajouter Client</button>
+      </div>
+					
+                        
+                      </form>
+                    </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modifie Article</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		  <p class="alert alert-info" *ngIf="message">{{message}}</p>
+         <div class="card-body">
+                      <form #form="ngForm" (ngSubmit)="ajouterClient(form)">
+						  <div class="row">
+								  <div class="col-6">
+							  <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Nom Client</label>
+                          <input type="text"    [(ngModel)]="client.nom" name="nom" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Prenom Client</label>
+                          <input type="text"   [(ngModel)]="client.prenom" name="prenom" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Adresse Client</label>
+                          <input type="text"   [(ngModel)]="client.adresse" name="adresse" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+						  </div> 
+						  	  <div class="col-6">
+							
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Numero  Tel Client</label>
+                          <input type="number"   [(ngModel)]="client.numTel" name="numTel" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
+                           
+                        </div>
+                         <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Email  Client</label>
+                          <input  type="text" [(ngModel)]="client.email" name="email" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
+                            
+                        </div>
+						  </div> 
+						  </div>
+					      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Modifier Article</button>
+      </div>
+					
+                        
+                      </form>
+                    </div>
+      </div>
+
+    </div>
+  </div>
+</div>

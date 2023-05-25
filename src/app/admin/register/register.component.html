@@ -1,0 +1,65 @@
+
+<div class="container mt-5">
+ <div class="row" >
+	   <div class="card col-lg-4 mx-auto" style=" box-shadow:  0cm 0 .5em rgb(82, 80, 80); width: 500px;">
+		 
+ 		  
+ 		  
+	<div class="text-center  mt-3" style="color: red;" *ngIf="message"> {{message}}  </div>				 
+		<h2  class="text-center mb-3 mt-3" ><b style="text-shadow: 2px 4px 3px rgba(0,0,0,0.3);">Authentification</b></h2>
+		<form #form="ngForm" (ngSubmit)="register(form)"  >
+			<div class="mb-3">
+				<label>
+					<b>NOM</b>
+				</label>
+						<input type="text" class="form-control" placeholder="nom "
+						  [(ngModel)]="utilisateur.nom" name="nom" required email
+						name="username" 
+						>
+	         </div>
+	         <div class="mb-3">
+				<label>
+					<b>PRENOM</b>
+				</label>
+						<input type="text" class="form-control" placeholder=" prenom "
+					  [(ngModel)]="utilisateur.prenom" name="prenom" required  >
+	         </div>
+			<div class="mb-3">
+				<label>
+					<b>ADRESSE</b>
+				</label>
+						<input type="text" class="form-control" placeholder="Adresse "
+						  [(ngModel)]="utilisateur.adresse"  name="adresse" required  
+ 						>
+	         </div>
+	         <div class="mb-3">
+				<label>
+					<b>E-MAIL</b>
+				</label>
+						<input type="email" class="form-control" placeholder="email or username "
+						 	  [(ngModel)]="utilisateur.email"  name="email" required email
+					 
+						>
+	         </div>
+			<div class="mb-3">
+				<label>
+					<b>PASSWORD</b>
+				</label>
+				<input type="password" class="form-control"  [(ngModel)]="utilisateur.password"    required
+				name="password">
+			</div>
+			
+				<div class="text-center mb-3">
+				<button type="submit"  mat-button class="text-center btn btn-primary"> Se Connecter 
+				 </button></div>
+				
+				 <div class="text-center mb-3">
+			
+				
+				<button mat-button class="text-center btn btn-primary"  routerLink="/login"> Anuuler
+				 </button></div>
+				
+			
+		</form>
+ </div>
+</div>

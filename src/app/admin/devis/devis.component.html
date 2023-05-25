@@ -1,0 +1,53 @@
+<div class="container">
+	
+<h1 class="text-center"
+				style="
+    background: linear-gradient(to right, #36ecde, #000);
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;">List des Commandes Annuler</h1>
+ 
+   
+                <div class="table-responsive text-nowrap">
+                  <table class="table p-3">
+                    <thead>
+                      <tr class="text-center">
+                        <th>code de Commandes</th>     
+                         <th>Date de Commande</th>
+                         <th>Etat</th>
+                          <th>Client</th>  
+                          <th>Prix Total</th>
+                        <th>Actions</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <tr *ngFor="let cmd of commandeList"  class="text-center">
+                        <td>{{cmd.id}}</td>
+                                                <td>{{cmd.orderDate}}</td>
+
+             			<td><p *ngIf="cmd.novalider == true" style="color:red"> Commande Refuser </p> 
+                        <p *ngIf="cmd.enattente == true" style="color:rgb(64, 0, 128)"> Commande En attente </p></td>
+                        <td>{{cmd.client.nom}}</td>
+                          <td>{{cmd.totalprix}}</td>
+                        <td>					                          
+                
+							 <button class="btn btn-basic" (click)="delete(cmd.id)">
+						  <img src="../../../assets/icons/delete.png" class="text-end" width="30" height="30">
+					  </button>
+		 <button class="btn btn-basic" (click)="getInfo(cmd.id)">
+						  <img src="../../../assets/icons/info.png"  class="text-end" width="30" height="30">
+					  </button>  
+                        </td>
+                        <td>
+							                          
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+ 
+ 
+      

@@ -1,0 +1,79 @@
+<div class="container">
+<h1 class="text-center"
+				style="
+    background: linear-gradient(to right, #36ecde, #000);
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;">Facture  </h1>
+		 <div class="row"> 
+			 <mat-grid-list cols="2" rowHeight="2:1" class="w-100">
+ 	  <div class="row mb-3">
+		 <div class="col-4 ">
+			 <h3 class="mb-3">Information  Client </h3> <br>
+			<b  class="mb-3">Nom et Prenom :</b>  <p>{{commande.client.nom +' '+ commande.client.prenom}}</p>
+			 <b  class="mb-3">Numero de Telephone :</b> <p>{{commande.client.numTel}}</p>
+		  
+		 </div>
+		 <div class="col-4">
+			 
+		 </div>
+			<div class="col-4 ">
+
+			<h3 class="mb-3"> Information  Commande</h3><br>
+			 	<b class="mb-3"> Numero Commande</b>	<p>{{commande.id}}</p>	
+			 	<b class="mb-3">  Date Commande</b>	<p>{{commande.orderDate}}</p> 
+			 	 <b class="mb-3">  Total Prix Commande</b>	<p>{{commande.totalprix}}</p>  
+  			 	 <b class="mb-3">  Total Prix Commande apres TVA</b>	<p>{{commande.totalprix + commande.tva }}</p>  
+
+
+		  </div>
+		  
+	  </div>
+  
+</mat-grid-list>
+ <hr> 
+ 	 <div class="container">
+ 
+	<div class="card">
+                <div class="table-responsive text-nowrap">
+                  <table class="table p-3">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Id Ligne Commande</th>     
+                         <th>Quantity</th>
+                           <th>Prix Unitaire </th>
+                          <th>Prix Total  </th>
+                           <th>Article</th>
+                           <th>Code Article</th>
+                         
+                      
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <tr    class="text-center" *ngFor="let lg of listLigneCommande">
+                        <td> {{lg.id_ordDetails}}</td>
+                        <td> {{lg.quantity}} </td>
+                        <td>{{lg.article.prixArticle}}</td>
+                         <td> {{lg.totalPrice}} </td>
+                          <td>{{lg.article.nomArticle}} </td>
+                           <td>{{lg.article.id}} </td>
+                        <td>					                          
+                                                
+                        </td>
+                        <td>
+							                          
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  <button class="btn btn-success mt-5">Imprimer</button>
+                </div>
+              </div>
+</div>
+  
+
+
+
+ 				 </div>
+</div>

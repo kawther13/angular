@@ -1,0 +1,144 @@
+<div class="container">
+<h1 class="text-center"
+				style="
+    background: linear-gradient(to right, #36ecde, #000);
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;">List de Categories </h1>
+	<div class="card">
+                <div class="table-responsive text-nowrap p-3">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Nom de Categorie</th>                      
+                        <th>Actions</th>
+                        <th class="text-center">Etat</th>
+                        <th>
+<button type="button" class="btn btn-basic" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+								<img src="../../../assets/icons/add.png" class="text-end" width="30" height="30">
+</button>
+							
+						</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <tr *ngFor="let cat of catList">
+                        <td>
+							{{cat.nomCat}}
+						</td>
+                        <td>					                          
+                         <button  type="button" (click)="updateCat(cat.id)" [disabled]="cat.etat==false" class="btn btn-basic" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+								<img src="../../../assets/icons/update.png" class="text-end" width="30" height="30">
+                         </button>
+                         </td>
+                         <td class="text-center">
+                         <button  type="button"   (click)=changeEtat(cat.id) *ngIf="cat.etat==false" class="btn btn-basic" >
+								<img src="../../../assets/icons/unlock.png"    width="30" height="30">
+                         </button>
+                         <button  type="button"  (click)=changeEtat(cat.id)  *ngIf="cat.etat==true"    class="text-center" class="btn btn-basic" >
+								 <img src="../../../assets/icons/lock.png"    width="30" height="30">
+                         </button>
+							                        
+                        </td>
+                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+</div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Ajouter Categorie</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		  <p *ngIf="message" class="alert alert-info">
+			  {{message}}
+		  </p>
+		   
+     <div class="col-xl">
+                  <div class="card mb-4">
+                   
+                    <div class="card-body">
+                      <form #form="ngForm" (ngSubmit)="ajouterCat(form)">                                     
+                      <div class="mb-3">
+                          <label class="form-label" for="basic-default-phone"
+                          
+                          >NOM DE CATEGORIE</label>
+                          <input
+                          [(ngModel)]="category.nomCat" [required]="true"
+                          name="nomCAT"
+                            type="text"
+                            id="basic-default-phone"
+                            class="form-control phone-mask"
+                            placeholder="NOM DE CATEGORIE"
+                          />
+                        </div>
+                         <div class="modal-footer mb-3">
+        <button type="button" class="btn btn-basic" data-bs-dismiss="modal">
+			<img src="../../../assets/icons/lock.png" width="30" height="30"  (click)="reset(form)"> FERMER</button>
+       
+                        <button type="submit" class="btn btn-basic">
+						<img src="../../../assets/icons/add.png" width="30" height="30">	AJOUTER 
+		
+
+		</button>
+      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+      </div>
+ 
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modifier Categorie</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+     <div class="col-xl">
+                  <div class="card mb-4">
+                   
+                    <div class="card-body">
+                     <form #form="ngForm" (ngSubmit)="updateCategory(form)">                                     
+                      <div class="mb-3">
+                          <label class="form-label" for="basic-default-phone"
+                          
+                          >NOM DE CATEGORIE</label>
+                          <input
+                           [(ngModel)]="categoryUpdate.nomCat"
+                             name="nomCAT"
+                            type="text"
+                            id="basic-default-phone"
+                            class="form-control phone-mask"
+                            placeholder="NOM DE CATEGORIE"
+                          />
+                        </div>
+                         <div class="modal-footer mb-3">
+        <button type="button" class="btn btn-basic" data-bs-dismiss="modal">
+			<img src="../../../assets/icons/lock.png" width="30" height="30" (click)="reset(form)"> FERMER</button>
+       
+                        <button type="submit" class="btn btn-basic">
+						<img src="../../../assets/icons/add.png" width="30" height="30">	MODIFIER 
+		
+
+		</button>
+      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+      </div>
+ 
+    </div>
+  </div>
+</div>

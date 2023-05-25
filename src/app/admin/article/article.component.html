@@ -1,0 +1,173 @@
+<div class="container">
+<h1 class="text-center"
+				style="
+    background: linear-gradient(to right, #36ecde, #000);
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;">List des Articles </h1>
+	<div class="card">
+                <div class="table-responsive text-nowrap">
+                  <table class="table p-3">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Nom de Article</th>     
+                         <th>prix de Article</th>
+                           <th>description de Article</th>
+                          <th>Quantity de Article</th>
+                           <th>Category de Article</th>
+                        <th>Actions</th>
+                        <th>
+							<button type="button" class="btn btn-basic" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+							<img src="../../../assets/icons/add.png" class="text-end" width="30" height="30">
+</button>
+						</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      <tr *ngFor="let art of listArticle"  class="text-center">
+                        <td>{{art.nomArticle}}</td>
+                        <td>{{art.prixArticle}}</td>
+                        <td>{{art.descriptionArticle}}</td>
+                         <td>{{art.qteArt}}</td>
+                          <td>{{art.categorieArticle.nomCat}}</td>
+                        <td>					                          
+                      <button type="button" class="btn btn-basic" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" (click)="findById(art.id)" >
+						  <img src="../../../assets/icons/update.png"  class="text-end" width="30" height="30">
+					  </button>
+							 <button class="btn btn-basic" (click)="deleteArticle(art.id)">
+						  <img src="../../../assets/icons/delete.png" class="text-end" width="30" height="30">
+					  </button>                          
+                        </td>
+                        <td>
+							                          
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Ajouter title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <div class="card-body">
+                      <form #form="ngForm" (ngSubmit)="ajouterArticle(form)">
+						  <div class="row">
+								  <div class="col-6">
+							  <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Nom Article</label>
+                          <input type="text"    [(ngModel)]="article.nomArticle" name="nomArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Prix Article</label>
+                          <input type="number"   [(ngModel)]="article.prixArticle" name="prixArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Quantity Article</label>
+                          <input type="number"   [(ngModel)]="article.qteArt" name="qteArt" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+						  </div> 
+						  	  <div class="col-6">
+							<div class="mb-3">
+								
+								
+								
+                          <label class="form-label" for="basic-default-fullname">Full Name</label>
+                          <select    [(ngModel)]="article.categorieArticle.id" name="categorieArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
+                         	<option *ngFor="let cat of catList" value="{{cat.id}}">
+								 {{cat.nomCat}}
+								 
+							 </option>
+                          </select>
+                          
+                          
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Description  Article</label>
+                          <textarea   [(ngModel)]="article.descriptionArticle" name="descriptionArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
+                           </textarea>
+                        </div>
+                         
+						  </div> 
+						  </div>
+					      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Ajouter Article</button>
+      </div>
+					
+                        
+                      </form>
+                    </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modifie Article</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <div class="card-body">
+                              <form #form="ngForm" (ngSubmit)="ajouterArticle(form)">
+						  <div class="row">
+								  <div class="col-6">
+							  <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Nom Article</label>
+                          <input type="text"    [(ngModel)]="article.nomArticle" name="nomArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Prix Article</label>
+                          <input type="number"   [(ngModel)]="article.prixArticle" name="prixArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Quantity Article</label>
+                          <input type="number"   [(ngModel)]="article.qteArt" name="qteArt" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+						  </div> 
+						  	  <div class="col-6">
+							<div class="mb-3">
+								
+								
+								
+                          <label class="form-label" for="basic-default-fullname">Full Name</label>
+                          <select    [(ngModel)]="article.categorieArticle.id" name="categorieArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
+                         	<option *ngFor="let cat of catList" value="{{cat.id}}">
+								 {{cat.nomCat}}
+								 
+							 </option>
+                          </select>
+                          
+                          
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Description  Article</label>
+                          <textarea   [(ngModel)]="article.descriptionArticle" name="descriptionArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
+                           </textarea>
+                        </div>
+                         
+						  </div> 
+						  </div>
+					      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Ajouter Article</button>
+      </div>
+					
+                        
+                      </form>
+                    </div>
+      </div>
+
+    </div>
+  </div>
+</div>
