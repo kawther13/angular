@@ -72,7 +72,7 @@ lgcmd:Lignecommande={
 					 (data:Commande)=>{
 						 console.log(data)
 						 this.commande=data;
-						 this.lgcmd.commande.id=this.id;
+						 this.lgcmd.commande.id=this.id;//
 					 this.ligneCommandeService.getAllligneCommande(this.commande.id).subscribe( 
 					 (data:Lignecommande[])=>{
 						 console.log(data)
@@ -88,5 +88,7 @@ lgcmd:Lignecommande={
 	)
      
      }
-
+     print(){
+		window.print();
+	  }
 }

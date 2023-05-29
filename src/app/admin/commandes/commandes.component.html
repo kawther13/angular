@@ -5,7 +5,7 @@
     background: linear-gradient(to right, #36ecde, #000);
 	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;">List des Commandes </h1>
+	-webkit-text-fill-color: transparent;">Liste des Commandes </h1>
 	<div class="card">
 		<div class="card-title"> Ajouter Commande</div>
 		 <div class="card-body">
@@ -14,7 +14,7 @@
 								  <div class="col-6">
                         <div class="mb-3">
                           <label class="form-label" for="basic-default-fullname"> Client</label>
-                          <select  [(ngModel)]="commande.client.id" name="client"  class="form-control" id="basic-default-fullname" >
+                          <select  [(ngModel)]="commande.client.id" name="client"  class="form-control" id="basic-default-fullname" ><!--lina captuna cmd.clt.id  apartir clt.id -->
 					 <option *ngFor="let clt of clientList" value="{{clt.id}}">
 						 {{clt.nom +''+ clt.prenom}}
 					 </option>

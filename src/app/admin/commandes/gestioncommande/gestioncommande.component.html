@@ -12,6 +12,8 @@
 			 <h3 class="mb-3">Information  Client </h3> <br>
 			<b  class="mb-3">Nom et Prenom :</b>  <p>{{commande.client.nom +' '+ commande.client.prenom}}</p>
 			 <b  class="mb-3">Numero de Telephone :</b> <p>{{commande.client.numTel}}</p>
+       <b  class="mb-3">email :</b> <p>{{commande.client.email}}</p>
+
 		  
 		 </div>
 		 <div class="col-4">
@@ -24,7 +26,7 @@
 			 	<b class="mb-3">  Date Commande</b>	<p>{{commande.orderDate}}</p> 
 			 	 <b class="mb-3">  Total Prix Commande</b>	<p>{{commande.totalprix}}</p>  
      	<button *ngIf="commande.valide==false" class="btn btn-success" (click)="activerCommande(commande.id)" style="margin-right: 5px;">Valider Commande</button>
- 	 	<button *ngIf="commande.novalider== false && commande.enattente== true" class="btn btn-danger" (click)="arreterCommande(commande.id)"style="margin-right: 5px;" >Annuler Commande</button>
+ 	 	<button *ngIf="commande.novalider== false && commande.enattente== true" class="btn btn-danger" (click)="arreterCommande(commande.id)"style="margin-right: 5px;" > Obtenir un  devis</button>
  	 	<button *ngIf="commande.valide== true" class="btn btn-danger" (click)="gotToFacture(commande.id)" style="margin-right: 5px;" >Afficher Facture</button>
 
 		  </div>
@@ -56,7 +58,7 @@
                       
 						  </div>  
 					      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Ajouter Ligne Commandes</button>
+        <button type="submit" class="btn btn-primary">Ajouter </button>
       </div>
 					
                         

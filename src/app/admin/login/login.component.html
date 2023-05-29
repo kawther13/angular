@@ -16,6 +16,9 @@
 						ngModel ngModel name="username" required email
 						name="username" 
 						>
+						<div *ngIf="notvalid" style="color: red;" >
+							{{notvalid}}
+						</div>
 	         </div>
 			<div class="mb-3">
 				<label>
@@ -24,6 +27,9 @@
 				<input type="password" class="form-control" 
 				ngModel   required minlength="5"
 				name="password">
+				<div *ngIf="passwordnotvalid" style="color: red;" >
+					{{passwordnotvalid}}
+				</div>
 			</div>
 			<div class="text-center mb-3">
 				

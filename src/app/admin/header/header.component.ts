@@ -16,7 +16,9 @@ admin:any
 		
    }
    public loginOrNot(){
+    
 	return this.authAdmin.isLoggedIn();
+  
 }
 public logout(){
 	this.router.navigate(['/login'])

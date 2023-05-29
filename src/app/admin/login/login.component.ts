@@ -12,32 +12,27 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  message = '';
-  isLoginDisabled = false;
-  loginAttempts = 0;
-  maxLoginAttempts = 3;
-  timeUntilLogin =  0;
+   notvalid: string;
+  passwordnotvalid: string;
+  message: string;
+  
 
   constructor(private router: Router, private adminService: AdminService, private authAdmin: AdminAuthService) {}
 
   ngOnInit(): void {
-    const loginAttemptsString = localStorage.getItem('loginAttempts');
-    this.loginAttempts = loginAttemptsString ? parseInt(loginAttemptsString, 10) : 0;
-
-    const blockExpirationString = localStorage.getItem('loginBlockExpiration');
-    const blockExpiration = blockExpirationString ? parseInt(blockExpirationString, 10) : 0;
-    const timeLeft = Math.max(0, Math.floor((blockExpiration - Date.now()) / 1000));
-
-    if (this.loginAttempts >= this.maxLoginAttempts && timeLeft > 0) {
-      this.isLoginDisabled = true;
-      this.timeUntilLogin = timeLeft;
-      setInterval(() => {
-        this.timeUntilLogin = Math.max(0, this.timeUntilLogin - 1);
-      }, 1000);
-    }
+    
   }
-
+  validateEmail(email: string): boolean {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]{2,}$/;
+    return emailPattern.test(email);
+  }
   login(form: NgForm) {
+  if (!this.validateEmail(form.value.username) ){
+	    this.notvalid = 'Adresse e-mail non valide';
+	 }if(form.value.password.length<5) {
+    
+      		this.passwordnotvalid="Mot de passe non valide"
+}
    this.adminService.loginAdmin(form.value).subscribe(
       (data: any) => {
         this.authAdmin.setRoles(data.utilisateur.roles);
@@ -48,10 +43,8 @@ export class LoginComponent implements OnInit {
 		}
        },
       (error: HttpErrorResponse) => {
-        if (error.status === 401) {
-           window.alert("Vous n'avez pas les droits d'accès")
-
-          }
+        if (error.status == 401) {
+this.message ="Vous n'avez pas les droits d'accès"          }
           })
 
 		  

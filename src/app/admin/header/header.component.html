@@ -6,7 +6,8 @@
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
 <a   class="nav-link px-3"  *ngIf="loginOrNot()" (click)="logout()" >Se deconnecter</a>
-<a   class="nav-link px-3"  *ngIf="!loginOrNot()" >Se Connecter</a>
+<a   class="nav-link px-3"  *ngIf="!loginOrNot()" routerLink="/login">Se Connecter</a>
+
 
     </div>
   </div>
@@ -46,8 +47,14 @@
               Commandes
             </a>
           </li>
+          <li class="nav-item">
+            <a routerLink="../facture"  class="nav-link"  >
+                    <span data-feather="bar-chart-2"></span>
+                    Facture
+                  </a>
+                </li>
              <li class="nav-item">
-      <a routerLink="/devis"  class="nav-link"  >
+      <a routerLink="/devis"  class="nav-link"  >+
               <span data-feather="bar-chart-2"></span>
               Devis
             </a>

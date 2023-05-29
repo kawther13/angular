@@ -22,8 +22,9 @@
 			<h3 class="mb-3"> Information  Commande</h3><br>
 			 	<b class="mb-3"> Numero Commande</b>	<p>{{commande.id}}</p>	
 			 	<b class="mb-3">  Date Commande</b>	<p>{{commande.orderDate}}</p> 
-			 	 <b class="mb-3">  Total Prix Commande</b>	<p>{{commande.totalprix}}</p>  
-  			 	 <b class="mb-3">  Total Prix Commande apres TVA</b>	<p>{{commande.totalprix + commande.tva }}</p>  
+			 	 <b class="mb-3">  Total Prix Commande</b>	<p>{{commande.totalprix}}</p>
+          <b class="mb-3">  TVA</b>	<p>{{commande.tva*100}}%</p>  
+  			 	 <b class="mb-3">  Prix TTC</b>	<p>{{commande.totalprix +(commande.totalprix* commande.tva) }}</p>  
 
 
 		  </div>
@@ -67,7 +68,11 @@
                       
                     </tbody>
                   </table>
-                  <button class="btn btn-success mt-5">Imprimer</button>
+                  <button class="btn btn-success mt-5"(click)="print()">Imprimer</button>
+                  .
+                  <button class="btn btn-success mt-5" routerLink="/gestioncommande">Annuler</button>
+                  
+                  <button class="btn btn-success mt-5"  routerLink="/gestioncommande">Ajouter </button>
                 </div>
               </div>
 </div>

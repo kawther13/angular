@@ -11,7 +11,8 @@ import { CategorieService } from 'src/app/services/categorie.service';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent  implements OnInit{
-    listArticle: Article[];
+ 
+	listArticle: Article[];
     article: Article={
         id: 0,
         nomArticle: '',
@@ -38,6 +39,9 @@ export class ArticleComponent  implements OnInit{
         etat: true
         }
     };
+	nomarticleError: string;
+	PrixError: string;
+	qtError: string;
 	constructor(private artService:ArticleService,private catService:CategorieService){}
     ngOnInit(): void {
 	this.allArticle();
@@ -50,14 +54,42 @@ export class ArticleComponent  implements OnInit{
 		}
 	)
     }
+	nonNumericValidator(value: string): boolean {
+		const regex = /^[^0-9]+$/; // Regular expression to match non-numeric characters
+		return regex.test(value);
+	  }
 ajouterArticle(form:NgForm){
+	const inputValue = form.value.nomArticle;
+    if (!this.nonNumericValidator(inputValue)) {
+		this.nomarticleError='nom d"article pas numerique ';
+     }else
+	if(form.value.nomArticle==''){
+		this.nomarticleError=''
+		this.nomarticleError="NOM ARTICLE OBLIGATOURE ET NON NUMERIQUE  ";
+	} else
+	if(form.value.prixArticle <=0){
+		this.nomarticleError=''
+
+		this.PrixError="Prix obligatoire et positife";
+	}else
+	if(form.value.qteArt  <=0){
+		this.PrixError="";
+		this.qtError="quantité obligatoire et positife";
+	}else{
+	/* && form.value.prixArticle <=0 && form.value.descriptionArticle=='' && form.value.qteArt <=0 
+	&& form.value.categorieArticle ==''){
+
+		this.passwordnotvalid="Mot de passe non valide"
+} */
 	this.artService.addArticles(this.article).subscribe( 
 		(data:Article)=>{
 			console.log(data)
+			
 			this.allArticle();
 			form.resetForm();
 		}
 	 )
+	}
 }
    getAllCategories() {
 		this.catService.getAllCat().subscribe( 

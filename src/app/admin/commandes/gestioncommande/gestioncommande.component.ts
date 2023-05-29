@@ -78,10 +78,12 @@ constructor(private router:Router, private route:ActivatedRoute,private artServi
 						 console.log(data)
 						 this.commande=data;
 						 this.lgcmd.commande.id=this.id;
+
 					 this.ligneCommandeService.getAllligneCommande(this.commande.id).subscribe( 
 					 (data:Lignecommande[])=>{
 						 console.log(data)
 						 this.listLigneCommande=data;
+
 					 }
 				 ) }
 				 )

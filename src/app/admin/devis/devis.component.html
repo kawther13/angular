@@ -5,7 +5,7 @@
     background: linear-gradient(to right, #36ecde, #000);
 	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;">List des Commandes Annuler</h1>
+	-webkit-text-fill-color: transparent;">Liste des devis </h1>
  
    
                 <div class="table-responsive text-nowrap">
@@ -26,7 +26,7 @@
                         <td>{{cmd.id}}</td>
                                                 <td>{{cmd.orderDate}}</td>
 
-             			<td><p *ngIf="cmd.novalider == true" style="color:red"> Commande Refuser </p> 
+             			<td><p *ngIf="cmd.novalider == true" style="color:red"> devis </p> 
                         <p *ngIf="cmd.enattente == true" style="color:rgb(64, 0, 128)"> Commande En attente </p></td>
                         <td>{{cmd.client.nom}}</td>
                           <td>{{cmd.totalprix}}</td>

@@ -57,21 +57,32 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        
          <div class="card-body">
                       <form #form="ngForm" (ngSubmit)="ajouterArticle(form)">
+                        
 						  <div class="row">
 								  <div class="col-6">
 							  <div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">Nom Article</label>
                           <input type="text"    [(ngModel)]="article.nomArticle" name="nomArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        <div *ngIf="nomarticleError" style="color:red;">
+                        {{nomarticleError}}
+                      </div>
                         </div>
                         <div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">Prix Article</label>
                           <input type="number"   [(ngModel)]="article.prixArticle" name="prixArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                          <div *ngIf="PrixError" style="color:red;">
+                            {{PrixError}}
+                          </div>
                         </div>
                         <div class="mb-3">
                           <label class="form-label" for="basic-default-fullname">Quantity Article</label>
                           <input type="number"   [(ngModel)]="article.qteArt" name="qteArt" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
+                        </div>
+                        <div *ngIf="qtError" style="color:red;">
+                          {{qtError}}
                         </div>
 						  </div> 
 						  	  <div class="col-6">
@@ -79,7 +90,7 @@
 								
 								
 								
-                          <label class="form-label" for="basic-default-fullname">Full Name</label>
+                          <label class="form-label" for="basic-default-fullname">Categorie</label>
                           <select    [(ngModel)]="article.categorieArticle.id" name="categorieArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
                          	<option *ngFor="let cat of catList" value="{{cat.id}}">
 								 {{cat.nomCat}}
@@ -140,7 +151,7 @@
 								
 								
 								
-                          <label class="form-label" for="basic-default-fullname">Full Name</label>
+                          <label class="form-label" for="basic-default-fullname">Categorie</label>
                           <select    [(ngModel)]="article.categorieArticle.id" name="categorieArticle" class="form-control" id="basic-default-fullname" placeholder="John Doe" >
                          	<option *ngFor="let cat of catList" value="{{cat.id}}">
 								 {{cat.nomCat}}
@@ -160,7 +171,7 @@
 						  </div>
 					      <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Ajouter Article</button>
+        <button type="submit" class="btn btn-primary">Modifier Article</button>
       </div>
 					
                         
